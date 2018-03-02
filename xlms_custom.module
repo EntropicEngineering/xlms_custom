@@ -12,3 +12,23 @@ function xlms_custom_update_status_alter(&$projects) {
     }
   }
 }
+
+/**
+ * Implements hook_form_quiz_report_form_alter().
+ */
+function xlms_custom_form_quiz_report_form_alter(&$form, $form_state) {
+  $no_report = TRUE;
+  drupal_set_title(t("Lesson completed."));
+  foreach ($form as $key => $value) {
+    if (is_numeric($key)) {
+      if (!$form[$key]['#no_report']) {
+        $no_report = FALSE;
+      }
+    }
+  }
+
+  if ($no_report) {
+    $form = array('#markup' => ""); 
+    $form = array('#markup' => t("You have completed all exercises for this lesson."));
+  }
+}

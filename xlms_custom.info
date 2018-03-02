@@ -1,3 +1,6 @@
 name = XLMS Custom
 description = Customizations to Opigno distribution and Drupal
 core = 7.x
+
+dependencies[] = xlms_page_manager
+dependencies[] = xlms_views
